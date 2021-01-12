@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "771550725114",
+    "project_id": "linkcard-3332d",
+    "storage_bucket": "linkcard-3332d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:771550725114:android:8061af3f1ca3d8ba831a43",
+        "android_client_info": {
+          "package_name": "com.wael.linkcard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "771550725114-1rq7s6trj7ttv52in3elj0o85qf8454v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wael.linkcard",
+            "certificate_hash": "174d33eb1123f94669965193f284e452b34455d3"
+          }
+        },
+        {
+          "client_id": "771550725114-2idutj2bnulh1jc4p9kgg1o5h3vv81m0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACfj5NG5LyUTga5xniVsSjqNgSrv78puc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "771550725114-2idutj2bnulh1jc4p9kgg1o5h3vv81m0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
