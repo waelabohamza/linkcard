@@ -132,7 +132,7 @@ class _BasketState extends State<Basket> {
     return InkWell(
       onTap: () {},
       child: Container(
-          height: 110,
+          height: 170,
           child: Card(
             child: Row(
               children: [
@@ -159,31 +159,112 @@ class _BasketState extends State<Basket> {
                               builder: (context, addtocart, child) {
                             return Text(
                                 " الكميه :  ${addtocart.quantity[items['items_id']]}  ");
-                          })
+                          }),
+                          Row(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.all(10),
+                                child: Consumer<AddToCart>(
+                                    builder: (context, addtocart, child) {
+                                  return Row(
+                                    children: [
+                                      Container(
+                                          decoration: BoxDecoration(
+                                              color: Colors.orange,
+                                              border: Border.all(
+                                                color: Colors.white,
+                                              ),
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(10))),
+                                          child: InkWell(
+                                            onTap: () {
+                                              if (addtocart.quantity[
+                                                      items['items_id']] ==
+                                                  null) {
+                                                addtocart.changequantity(
+                                                    items['items_id'], 0);
+                                              }
+                                              // if (int.parse(addtocart.quantity[
+                                              //             items['items_id']]
+                                              //         .toString()) >=
+                                              //     countcode) {
+                                              //   print(addtocart.quantity[
+                                              //       items['items_id']]);
+                                              //   showAlertOneChoose(
+                                              //       context,
+                                              //       "warning",
+                                              //       "هام",
+                                              //       "لا يوجد اكود متوفرة للبيع");
+                                              // } else {
+                                              addtocart.addItems(items);
+                                              // }
+                                            },
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Icon(
+                                                Icons.add,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          )),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 14),
+                                        child: Text(
+                                          "${addtocart.quantity[items['items_id']] ?? 0}",
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ),
+                                      Container(
+                                          decoration: BoxDecoration(
+                                              color: Colors.orange,
+                                              border: Border.all(
+                                                color: Colors.white,
+                                              ),
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(10))),
+                                          child: InkWell(
+                                            onTap: () {
+                                              addtocart.removeItems(items);
+                                            },
+                                            child: Padding(
+                                              padding: EdgeInsets.all(8),
+                                              child: Icon(
+                                                Icons.remove,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ))
+                                    ],
+                                  );
+                                }),
+                              )
+                            ],
+                          )
                         ],
                       ),
                     )),
                 Expanded(
                     child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Container(
-                       
-                        child: Text("price")),
+                    Container(child: Text("price")),
                     int.parse(items['items_discount']) == 0
-                        ? Text("${items['items_price']}  د.ام")
+                        ? Text("${items['items_price']} \$")
                         : Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                "${items['items_price']} د.ام",
+                                "${items['items_price']} \$",
                                 style: TextStyle(
                                     decoration: TextDecoration.lineThrough,
                                     color: Colors.red),
                               ),
-                              
                               Text(
-                                "${int.parse(items['items_price']) - int.parse(items['items_price']) * (int.parse(items['items_discount']) / 100)}  د.ام",
+                                "${int.parse(items['items_price']) - int.parse(items['items_price']) * (int.parse(items['items_discount']) / 100)}  \$",
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.green),
