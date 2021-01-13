@@ -177,27 +177,39 @@ class _BasketState extends State<Basket> {
                                               borderRadius: BorderRadius.all(
                                                   Radius.circular(10))),
                                           child: InkWell(
-                                            onTap: () {
+                                            onTap: () async {
                                               if (addtocart.quantity[
                                                       items['items_id']] ==
                                                   null) {
                                                 addtocart.changequantity(
                                                     items['items_id'], 0);
                                               }
-                                              // if (int.parse(addtocart.quantity[
-                                              //             items['items_id']]
-                                              //         .toString()) >=
-                                              //     countcode) {
-                                              //   print(addtocart.quantity[
-                                              //       items['items_id']]);
-                                              //   showAlertOneChoose(
-                                              //       context,
-                                              //       "warning",
-                                              //       "هام",
-                                              //       "لا يوجد اكود متوفرة للبيع");
-                                              // } else {
-                                              addtocart.addItems(items);
-                                              // }
+                                              // ============================ Start Get Count
+
+                                              var responbebody =
+                                                  await crud.readDataWhere(
+                                                      linkCountcodes,
+                                                      items['items_id']);
+                                              var countcode = int.parse(
+                                                  responbebody['count']
+                                                      .toString());
+
+                                              //================================ End Get Count
+
+                                              if (int.parse(addtocart.quantity[
+                                                          items['items_id']]
+                                                      .toString()) >=
+                                                  countcode) {
+                                                print(addtocart.quantity[
+                                                    items['items_id']]);
+                                                showAlertOneChoose(
+                                                    context,
+                                                    "warning",
+                                                    "هام",
+                                                    "لا يوجد اكود متوفرة للبيع");
+                                              } else {
+                                                addtocart.addItems(items);
+                                              }
                                             },
                                             child: Padding(
                                               padding:

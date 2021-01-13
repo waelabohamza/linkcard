@@ -142,7 +142,7 @@ class _ItemsState extends State<Items> {
                       Spacer(),
                       Container(
                           child: Text(
-                        "${widget.items['items_price']} د.ام",
+                        "${widget.items['items_price']} \$",
                         style: Theme.of(context).textTheme.headline6,
                       ))
                     ],
