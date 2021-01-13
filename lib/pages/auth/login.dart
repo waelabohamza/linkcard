@@ -155,6 +155,7 @@ class _LoginState extends State<Login>{
     return Container(
         padding: EdgeInsets.all(10),
         child: TextFormField(
+          obscureText: type == "password" ? true : false ,
           controller: mycontrole,
           validator: (val) {
             if (type == "username") {

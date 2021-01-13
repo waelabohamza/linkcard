@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:linkcard/const.dart';
 import 'package:linkcard/main.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Drawer(
-
       elevation: 0.0,
       child: Container(
         padding: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 0),
         color: Colors.grey[50],
         child: Container(
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.white,
-              // boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 10.0)]
-              ),
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.white,
+            // boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 10.0)]
+          ),
           child: Column(
             children: [
               Container(
@@ -74,26 +75,25 @@ class MyDrawer extends StatelessWidget {
                 margin: EdgeInsets.only(top: 30),
                 padding: EdgeInsets.all(10),
                 child: Column(
-                  children: [ 
+                  children: [
                     buildCustomListile("الرئيسية", Icons.home, () {
                       Navigator.of(context).pushNamed("home");
                     }),
                     Divider(
                       color: Colors.grey,
                     ),
-                    buildCustomListile(
-                        "مشترياتي", Icons.shopping_basket, () {
-                          Navigator.of(context).pushNamed("myorders") ; 
-                        }),
+                    buildCustomListile("مشترياتي", Icons.shopping_basket, () {
+                      Navigator.of(context).pushNamed("myorders");
+                    }),
+                    Divider(
+                      color: Colors.grey,
+                    ),
+                    buildCustomListile("حول التطبيق", Icons.info_sharp, () {}),
                     Divider(
                       color: Colors.grey,
                     ),
                     buildCustomListile(
-                        "حول التطبيق", Icons.info_sharp, () {}),
-                    Divider(
-                      color: Colors.grey,
-                    ),
-                    buildCustomListile("الشروط والاحكام", Icons.article_rounded, () {}),
+                        "الشروط والاحكام", Icons.article_rounded, () {}),
                     Divider(
                       color: Colors.grey,
                     ),
@@ -110,46 +110,98 @@ class MyDrawer extends StatelessWidget {
                       sharedPrefs.clear();
                       Navigator.of(context).pushReplacementNamed("login");
                     })
-                  :Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10  ,vertical: 10),
-                    child: buildCustomListile("تسجيل الدخول", Icons.login, () {
-                      Navigator.of(context).pushReplacementNamed("login");
-                    })),
-              Container(
-                margin: EdgeInsets.only(bottom: 20),
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                decoration: BoxDecoration(
-                    color: maincolor, borderRadius: BorderRadius.circular(10)),
-                child: Text(
-                  "contact by online chat",
-                  style: TextStyle(color: Colors.white),
+                  : Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                      child:
+                          buildCustomListile("تسجيل الدخول", Icons.login, () {
+                        Navigator.of(context).pushReplacementNamed("login");
+                      })),
+              InkWell(
+                onTap: () async {
+                  String text = "اهلا بكم انا زبون من تطبيق المتجر العربي" ; 
+                  String url =
+                      'https://api.whatsapp.com/send/?phone=96569001503&text=$text&app_absent=0';
+                  if (await canLaunch(url)) {
+                    await launch(url);
+                  } else {
+                    throw 'Could not launch $url';
+                  }
+                },
+                child: Container(
+                  margin: EdgeInsets.only(bottom: 20),
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                  decoration: BoxDecoration(
+                      color: maincolor,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Row(
+                    children: [
+                      FaIcon(
+                        FontAwesomeIcons.whatsapp,
+                        color: Colors.white,
+                      ),
+                      SizedBox(width: 10),
+                      Text(
+                        "contact by ",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Container(
-                padding: EdgeInsets.all(10),
+                padding: EdgeInsets.all(20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Image.asset(
-                      "assets/social/facebook.png",
-                      width: 35,
-                      height: 35,
-                    ),
-                    Image.asset(
-                      "assets/social/instagram.png",
-                      width: 35,
-                      height: 35,
-                    ),
-                    Image.asset(
-                      "assets/social/twitter.png",
-                      width: 35,
-                      height: 35,
-                    ),
-                    Image.asset(
-                      "assets/social/telegram.png",
-                      width: 35,
-                      height: 35,
-                    ),
+                    IconButton(
+                        icon: FaIcon(
+                          FontAwesomeIcons.facebookSquare,
+                          color: maincolor,
+                          size: 50,
+                        ),
+                        onPressed: () {}),
+                    IconButton(
+                        icon: FaIcon(
+                          FontAwesomeIcons.instagramSquare,
+                          color: maincolor,
+                          size: 50,
+                        ),
+                        onPressed: () {}),
+                    IconButton(
+                        icon: FaIcon(
+                          FontAwesomeIcons.twitterSquare,
+                          color: maincolor,
+                          size: 50,
+                        ),
+                        onPressed: () {}),
+                    IconButton(
+                        icon: FaIcon(
+                          FontAwesomeIcons.telegramPlane,
+                          color: maincolor,
+                          size: 50,
+                        ),
+                        onPressed: () {})
+                    // Image.asset(
+                    //   "assets/social/facebook.png",
+                    //   width: 35,
+                    //   height: 35,
+                    // ),
+                    // Image.asset(
+                    //   "assets/social/instagram.png",
+                    //   width: 35,
+                    //   height: 35,
+                    // ),
+                    // Image.asset(
+                    //   "assets/social/twitter.png",
+                    //   width: 35,
+                    //   height: 35,
+                    // ),
+                    // Image.asset(
+                    //   "assets/social/telegram.png",
+                    //   width: 35,
+                    //   height: 35,
+                    // ),
                   ],
                 ),
               )

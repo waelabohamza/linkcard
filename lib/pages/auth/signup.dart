@@ -37,14 +37,15 @@ class _SignUpState extends State<SignUp> {
         sharedPrefs.setString("password", responsebody['password']);
         Navigator.of(context).pop();
 
-        showAlertOneChoose(context, "success", "مبروك", "تم انشاء الحساب بنجاح يمكنك الان تسجيل الدخول");
+        showAlertOneChoose(context, "success", "مبروك",
+            "تم انشاء الحساب بنجاح يمكنك الان تسجيل الدخول");
         Future.delayed(Duration(seconds: 3), () {
           Navigator.of(context).pushReplacementNamed("login");
         });
       } else {
         Navigator.of(context).pop();
-        showAlertOneChoose(context, "error", "خطأ",
-            "البريد الالكتروني موجود سابقا");
+        showAlertOneChoose(
+            context, "error", "خطأ", "البريد الالكتروني موجود سابقا");
       }
     }
   }
@@ -131,13 +132,14 @@ class _SignUpState extends State<SignUp> {
     return Container(
         padding: EdgeInsets.all(10),
         child: TextFormField(
+          obscureText: type == "password" || type == "confirm" ? true : false,
           controller: mycontrole,
           validator: (val) {
             if (type == "username") {
               return validInput(val, 2, 30, "يكون اسم المستخدم");
             }
             if (type == "email") {
-              return validInput(val, 2, 50, "يكون اسم المستخدم" , "email");
+              return validInput(val, 2, 50, "يكون اسم المستخدم", "email");
             } else if (type == "password") {
               return validInput(val, 3, 100, "تكون كلمة المرور");
             }
