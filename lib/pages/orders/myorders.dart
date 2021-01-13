@@ -24,7 +24,7 @@ class _MyOrdersState extends State<MyOrders> {
       key: appbarkey,
       appBar: myAppBar(appbarkey, "myorders", context),
       drawer: MyDrawer(),
-      body: Container(
+      body: WillPopScope(child: Container(
           padding: EdgeInsets.all(10),
           child: ListView(children: [
             Text(
@@ -55,7 +55,11 @@ class _MyOrdersState extends State<MyOrders> {
                  return Center(child: CircularProgressIndicator()) ; 
              },
            ),
-          ])),
+          ])), onWillPop: ()
+          {
+            Navigator.of(context).pushNamed("home")  ;
+            return ; 
+          }),
     );
   }
 }

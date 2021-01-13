@@ -8,6 +8,7 @@ import 'package:linkcard/const.dart';
 import 'package:linkcard/linkapi.dart';
 import 'package:linkcard/pages/cart/addtocart.dart';
 import 'package:linkcard/pages/payment/checkout.dart';
+import 'package:linkcard/pages/paypal/makePayment.dart';
 import 'package:provider/provider.dart';
 
 class Basket extends StatefulWidget {
@@ -91,7 +92,7 @@ class _BasketState extends State<Basket> {
                     if (addtocart.count > 0) {
                       Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) {
-                        return CheckOut(
+                        return MakePayment(
                           count: addtocart.count,
                           listitems: addtocart.bascket,
                           price: addtocart.afterdiscount,

@@ -24,22 +24,24 @@ class _HomeState extends State<Home> {
       appBar: myAppBar(appbarkey, "home", context),
       drawer: MyDrawer(),
       body: Container(
-          padding: EdgeInsets.symmetric(horizontal: 10),
+          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: ListView(
             children: [
               Container(
                   margin: EdgeInsets.symmetric(vertical: 10),
                   child: buildCarousal()),
-              Row(children: [
-                Expanded(
-                  child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image.asset(
-                "assets/sale.gif",
-                width: mdw / 1.06,
-              ),)
-              )
-              ],),
+              Row(
+                children: [
+                  Expanded(
+                      child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.asset(
+                      "assets/sale.gif",
+                      width: mdw / 1.06,
+                    ),
+                  ))
+                ],
+              ),
               Container(
                 child: FutureBuilder(
                   future: crud.readData(linkcategories),
@@ -48,7 +50,7 @@ class _HomeState extends State<Home> {
                       return GridView.builder(
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
-                                   crossAxisCount: 2),
+                                  crossAxisCount: 2),
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
                           itemCount: snapshot.data.length,
@@ -60,7 +62,22 @@ class _HomeState extends State<Home> {
                     return Center(child: CircularProgressIndicator());
                   },
                 ),
-              )
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 10),
+                child: Row(
+                  children: [
+                    Expanded(
+                        child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.asset(
+                        "assets/a.jpg",
+                        width: mdw / 1.06,
+                      ),
+                    ))
+                  ],
+                ),
+              ),
             ],
           )),
     );

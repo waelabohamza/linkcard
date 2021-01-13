@@ -11,17 +11,18 @@ class MyDrawer extends StatelessWidget {
     return Drawer(
       elevation: 0.0,
       child: Container(
-        padding: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 0),
+        padding: EdgeInsets.only(top: 40, left: 20, right: 20, bottom: 20),
         color: Colors.grey[50],
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             color: Colors.white,
-            // boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 10.0)]
+            boxShadow: [BoxShadow(color: Colors.grey[300], blurRadius: 2.0  , spreadRadius: 1.1)]
           ),
           child: Column(
             children: [
               Container(
+                margin: EdgeInsets.only(top: 20),
                 child: Row(
                   children: [
                     Container(
@@ -29,7 +30,7 @@ class MyDrawer extends StatelessWidget {
                       child: Column(
                         children: [
                           Text(
-                            "AlMutajar AlArabi",
+                            "المتجر العربي",
                             style: TextStyle(
                                 color: maincolor,
                                 fontSize: 16,
@@ -44,8 +45,8 @@ class MyDrawer extends StatelessWidget {
                     ),
                     Image.asset(
                       "assets/logo.png",
-                      width: 80,
-                      height: 80,
+                      width: 70,
+                      height: 70,
                     ),
                   ],
                 ),
@@ -97,6 +98,20 @@ class MyDrawer extends StatelessWidget {
                     Divider(
                       color: Colors.grey,
                     ),
+                    sharedPrefs.getString("id") != null
+                        ? buildCustomListile("تسجيل الخروج", Icons.exit_to_app,
+                            () {
+                            sharedPrefs.clear();
+                            Navigator.of(context).pushReplacementNamed("login");
+                          })
+                        : Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            child: buildCustomListile(
+                                "تسجيل الدخول", Icons.login, () {
+                              Navigator.of(context)
+                                  .pushReplacementNamed("login");
+                            })),
 
                     // Divider(
                     //   color: Colors.grey,
@@ -105,21 +120,9 @@ class MyDrawer extends StatelessWidget {
                 ),
               ),
               Spacer(),
-              sharedPrefs.getString("id") != null
-                  ? buildCustomListile("تسجيل الخروج", Icons.exit_to_app, () {
-                      sharedPrefs.clear();
-                      Navigator.of(context).pushReplacementNamed("login");
-                    })
-                  : Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                      child:
-                          buildCustomListile("تسجيل الدخول", Icons.login, () {
-                        Navigator.of(context).pushReplacementNamed("login");
-                      })),
               InkWell(
                 onTap: () async {
-                  String text = "اهلا بكم انا زبون من تطبيق المتجر العربي" ; 
+                  String text = "اهلا بكم انا زبون من تطبيق المتجر العربي";
                   String url =
                       'https://api.whatsapp.com/send/?phone=96569001503&text=$text&app_absent=0';
                   if (await canLaunch(url)) {
@@ -129,21 +132,22 @@ class MyDrawer extends StatelessWidget {
                   }
                 },
                 child: Container(
-                  margin: EdgeInsets.only(bottom: 20),
+                  margin: EdgeInsets.only(bottom: 2 , left: 15 , right: 15),
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                   decoration: BoxDecoration(
-                      color: maincolor,
+                      color: Colors.green,
                       borderRadius: BorderRadius.circular(10)),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      FaIcon(
-                        FontAwesomeIcons.whatsapp,
-                        color: Colors.white,
-                      ),
-                      SizedBox(width: 10),
                       Text(
                         "contact by ",
                         style: TextStyle(color: Colors.white),
+                      ),
+                      SizedBox(width: 10),
+                      FaIcon(
+                        FontAwesomeIcons.whatsapp,
+                        color: Colors.white,
                       ),
                     ],
                   ),

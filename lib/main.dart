@@ -9,6 +9,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:linkcard/component/applocal.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'package:linkcard/pages/paypal/makePayment.dart';
+
 SharedPreferences sharedPrefs;
 String userid;
 
@@ -42,7 +44,8 @@ class MyApp extends StatelessWidget {
         primaryColor: Color(0xFF12234b),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: userid == null ? Login() : Home(),
+      home: MakePayment() , 
+      // userid == null ? Login() : Home(),
       // userid == null ? Login() : Home(),
       routes: routes,
       localizationsDelegates: [
