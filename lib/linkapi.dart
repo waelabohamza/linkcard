@@ -1,53 +1,53 @@
 import 'package:linkcard/const.dart';
 
 // Auth
-const String linkSignin = "https://$serverName/auth/signin.php";
-const String linkSignup = "https://$serverName/auth/signup.php";
+const String linkSignin = "http://$serverName/auth/signin.php";
+const String linkSignup = "http://$serverName/auth/signup.php";
 // users
-const String linkusers = "https://$serverName/users/users.php";
-const String linkAddusers = "https://$serverName/users/addusers.php";
-const String linkEditusers = "https://$serverName/users/editusers.php";
-const String linkDeleteUsers = "https://$serverName/users/deleteusers.php";
+const String linkusers = "http://$serverName/users/users.php";
+const String linkAddusers = "http://$serverName/users/addusers.php";
+const String linkEditusers = "http://$serverName/users/editusers.php";
+const String linkDeleteUsers = "http://$serverName/users/deleteusers.php";
 // categories
-const String linkcategories = "https://$serverName/categories/categories.php";
+const String linkcategories = "http://$serverName/categories/categories.php";
 const String linkAddcategories =
-    "https://$serverName/categories/addcategories.php";
+    "http://$serverName/categories/addcategories.php";
 const String linkEditcategories =
-    "https://$serverName/categories/editcategories.php";
+    "http://$serverName/categories/editcategories.php";
 const String linkDeletecategories =
-    "https://$serverName/categories/deletecategories.php";
+    "http://$serverName/categories/deletecategories.php";
 // subcategories
 const String linksubcategories =
-    "https://$serverName/subcategories/subcategories.php";
+    "http://$serverName/subcategories/subcategories.php";
 const String linkAddsubcategories =
-    "https://$serverName/subcategories/addsubcategories.php";
+    "http://$serverName/subcategories/addsubcategories.php";
 const String linkEditsubcategories =
-    "https://$serverName/subcategories/editsubcategories.php";
+    "http://$serverName/subcategories/editsubcategories.php";
 const String linkDeletesubcategories =
-    "https://$serverName/subcategories/deletesubcategories.php";
+    "http://$serverName/subcategories/deletesubcategories.php";
 // items
-const String linkitems = "https://$serverName/items/items.php";
-const String linkAdditems = "https://$serverName/items/additems.php";
-const String linkEdititems = "https://$serverName/items/edititems.php";
-const String linkDeleteitems = "https://$serverName/items/deleteitems.php";
+const String linkitems = "http://$serverName/items/items.php";
+const String linkAdditems = "http://$serverName/items/additems.php";
+const String linkEdititems = "http://$serverName/items/edititems.php";
+const String linkDeleteitems = "http://$serverName/items/deleteitems.php";
 // code
-const String linkcodes = "https://$serverName/codes/codes.php";
-const String linkAddcodes = "https://$serverName/codes/addcodes.php";
-const String linkEditcodes = "https://$serverName/codes/editcodes.php";
-const String linkDeletecodes = "https://$serverName/codes/deletecodes.php";
-const String linkCountcodes = "https://$serverName/codes/countcodes.php";
+const String linkcodes = "http://$serverName/codes/codes.php";
+const String linkAddcodes = "http://$serverName/codes/addcodes.php";
+const String linkEditcodes = "http://$serverName/codes/editcodes.php";
+const String linkDeletecodes = "http://$serverName/codes/deletecodes.php";
+const String linkCountcodes = "http://$serverName/codes/countcodes.php";
 // orders
 
 //forgetpassword
-const String linkCheckemail = "https://$serverName/auth/checkemail.php";
+const String linkCheckemail = "http://$serverName/auth/checkemail.php";
 const String linkforgetpassword =
-    "https://almotorkw.com/carbooking/sendmail.php";
+    "http://almotorkw.com/carbooking/sendmail.php";
 
 // coupon
-const String linkCheckcoupon = "https://$serverName/coupon/checkcoupon.php";
+const String linkCheckcoupon = "http://$serverName/coupon/checkcoupon.php";
 // orders
 
-const String linkMyorders = "https://$serverName/orders/myorders.php";
+const String linkMyorders = "http://$serverName/orders/myorders.php";
 
 // images
-const String linkupload = "https://$serverName/upload";
+const String linkupload = "http://$serverName/upload";
