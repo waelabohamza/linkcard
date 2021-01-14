@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const serverName = "192.168.1.5:8080/yaser" ;  
+const serverName = "192.168.1.4:8080/yaser" ;  
 // const serverName = "almutajaralarabi.com/api" ;  
 
 

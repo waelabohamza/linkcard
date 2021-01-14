@@ -15,9 +15,17 @@ class _FaildState extends State<Faild> {
       appBar: AppBar(
         title: Text('هام'),
       ),
-      body: Container(
-        child: Text(
-            "تم الفشل حاول مجددا يمكنك التواصل مع الدعم الفني في جال حدوث خطأ ما "),
+      body: WillPopScope(
+        child: Center(
+          child: Container(
+            child: Text(
+                "تم الفشل حاول مجددا يمكنك التواصل مع الدعم الفني في جال حدوث خطأ ما "),
+          ),
+        ),
+        onWillPop: () {
+          Navigator.of(context).pushNamed("home");
+          return;
+        },
       ),
     );
   }

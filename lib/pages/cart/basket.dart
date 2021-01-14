@@ -7,7 +7,7 @@ import 'package:linkcard/component/mydrawer.dart';
 import 'package:linkcard/const.dart';
 import 'package:linkcard/linkapi.dart';
 import 'package:linkcard/pages/cart/addtocart.dart';
-import 'package:linkcard/pages/payment/checkout.dart';
+// import 'package:linkcard/pages/payment/checkout.dart';
 import 'package:linkcard/pages/paypal/PaypalPayment.dart';
 import 'package:provider/provider.dart';
 
