@@ -1,13 +1,27 @@
 import 'dart:core';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:linkcard/component/crud.dart';
+import 'package:linkcard/main.dart';
+import 'package:linkcard/pages/paypal/success.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'PaypalServices.dart';
 
 class PaypalPayment extends StatefulWidget {
+  final totalprice;
   final Function onFinish;
 
-  PaypalPayment({this.onFinish});
+  // For Orders
+
+  final count;
+  final listitems;
+  final quantity;
+
+  PaypalPayment(
+      {this.onFinish,
+      this.totalprice,
+      this.count,
+      this.listitems,
+      this.quantity});
 
   @override
   State<StatefulWidget> createState() {
@@ -16,7 +30,12 @@ class PaypalPayment extends StatefulWidget {
 }
 
 class PaypalPaymentState extends State<PaypalPayment> {
-  
+  // ============================
+  String totalAmount;
+  String returnSuccess;
+  Crud crud = new Crud();
+  //  ==============================
+
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   String checkoutUrl;
   String executeUrl;
@@ -40,7 +59,7 @@ class PaypalPaymentState extends State<PaypalPayment> {
   @override
   void initState() {
     super.initState();
-
+    totalAmount = widget.totalprice.toString();
     Future.delayed(Duration.zero, () async {
       try {
         accessToken = await services.getAccessToken();
@@ -72,8 +91,7 @@ class PaypalPaymentState extends State<PaypalPayment> {
   }
 
   // item name, price and quantity
-  String itemName = 'iPhone X Pro ';
-  String itemPrice = '3.99';
+  String itemName = 'المتجر العربي';
   int quantity = 1;
 
   Map<String, dynamic> getOrderParams() {
@@ -82,13 +100,12 @@ class PaypalPaymentState extends State<PaypalPayment> {
       {
         "name": itemName,
         "quantity": quantity,
-        "price": itemPrice,
+        "price": totalAmount,
         "currency": defaultCurrency["currency"]
       }
     ];
 
     // checkout invoice details
-    String totalAmount = '3.99';
 
     Map<String, dynamic> temp = {
       "intent": "sale",
@@ -125,21 +142,41 @@ class PaypalPaymentState extends State<PaypalPayment> {
         body: WebView(
           initialUrl: checkoutUrl,
           javascriptMode: JavascriptMode.unrestricted,
-          navigationDelegate: (NavigationRequest request) {
+          navigationDelegate: (NavigationRequest request) async {
             if (request.url.contains(returnURL)) {
               final uri = Uri.parse(request.url);
               final payerID = uri.queryParameters['PayerID'];
               if (payerID != null) {
-                services
+                await services
                     .executePayment(executeUrl, payerID, accessToken)
                     .then((id) {
+                  returnSuccess = id;
                   widget.onFinish(id);
+
                   Navigator.of(context).pop();
                 });
+                var data = {
+                  "price": widget.totalprice,
+                  "quantity": widget.quantity,
+                  "items": widget.listitems,
+                  "count": widget.count,
+                  "email": sharedPrefs.getString("email"),
+                  "id": sharedPrefs.getString("id"),
+                  "username": sharedPrefs.getString("username"),
+                  "date": DateTime.now().toString()
+                };
+                if (returnSuccess == "approved") await crud.addOrders(data);
               } else {
                 Navigator.of(context).pop();
               }
-              Navigator.of(context).pop();
+              if (returnSuccess == "approved") {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return Success(approve: returnSuccess);
+                }));
+              } else {
+                
+              }
             }
             if (request.url.contains(cancelURL)) {
               Navigator.of(context).pop();
