@@ -216,7 +216,7 @@ class _BasketState extends State<Basket> {
                                                 addtocart.addItems(
                                                     items,
                                                     gePriceItemsByCountry(
-                                                        items)[0]);
+                                                        items)[2]);
                                               }
                                             },
                                             child: Padding(
@@ -251,7 +251,7 @@ class _BasketState extends State<Basket> {
                                               addtocart.removeItems(
                                                   items,
                                                   gePriceItemsByCountry(
-                                                      items)[0]);
+                                                      items)[2]);
                                             },
                                             child: Padding(
                                               padding: EdgeInsets.all(8),
@@ -359,30 +359,36 @@ class _BasketState extends State<Basket> {
 
   List gePriceItemsByCountry(items) {
     double price;
+    double priceus;
+    priceus = double.parse(items['items_price'].toString());
     List data = [];
     country = sharedPrefs.getString("country");
     if (country == "usa") {
       price = double.parse(items['items_price'].toString());
       data.add(price);
       data.add("\$");
+      data.add(priceus);
       return data;
     }
     if (country == "uae") {
       price = double.parse(items['items_price_em'].toString());
       data.add(price);
       data.add("د.ام");
+      data.add(priceus);
       return data;
     }
     if (country == "ir") {
       price = double.parse(items['items_price_ir'].toString());
       data.add(price);
       data.add("د.ع");
+      data.add(priceus);
       return data;
     }
     if (country == "sa") {
       price = double.parse(items['items_price_sa'].toString());
       data.add(price);
       data.add("ر.س");
+      data.add(priceus);
       return data;
     }
     return data;

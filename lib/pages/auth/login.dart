@@ -104,7 +104,7 @@ class _LoginState extends State<Login> {
                         "ادخل البريد الالكتروني لارسال كلمة المرور اليك",
                         forgetpassword,
                         forgetPassword);
-                    ;
+                  
                   },
                   child: Container(
                       child: Text(
