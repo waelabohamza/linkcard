@@ -102,7 +102,10 @@ class MyDrawer extends StatelessWidget {
                     Divider(
                       color: Colors.grey,
                     ),
-                    buildCustomListile("حول التطبيق", Icons.info_sharp, () {}),
+                    buildCustomListile("حول التطبيق", Icons.info_sharp, () {
+                          Navigator.of(context).pushNamed("about") ; 
+
+                    }),
 
                     Divider(
                       color: Colors.grey,

@@ -18,6 +18,7 @@ class _LicenceState extends State<Licence> {
     Crud crud = new Crud();
 
     return Scaffold(
+      key: appbarkey,
       appBar: myAppBar(appbarkey, "licence", context),
       drawer: MyDrawer(),
       body: Container(

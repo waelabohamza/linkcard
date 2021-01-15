@@ -18,6 +18,7 @@ class _AboutState extends State<About> {
     Crud crud = new Crud();
 
     return Scaffold(
+      key: appbarkey,
       appBar: myAppBar(appbarkey, "About", context),
       drawer: MyDrawer(),
       body: Container(
