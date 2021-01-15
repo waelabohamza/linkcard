@@ -51,3 +51,5 @@ const String linkMyorders = "http://$serverName/orders/myorders.php";
 
 // images
 const String linkupload = "http://$serverName/upload";
+
+const String linkHelp = "http://$serverName/help/help.php" ; 

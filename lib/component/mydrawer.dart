@@ -108,7 +108,9 @@ class MyDrawer extends StatelessWidget {
                       color: Colors.grey,
                     ),
                     buildCustomListile(
-                        "الشروط والاحكام", Icons.article_rounded, () {}),
+                        "الشروط والاحكام", Icons.article_rounded, () {
+                          Navigator.of(context).pushNamed("licence") ; 
+                        }),
                     Divider(
                       color: Colors.grey,
                     ),
