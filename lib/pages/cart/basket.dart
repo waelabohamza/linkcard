@@ -64,11 +64,11 @@ class _BasketState extends State<Basket> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            " ${addtocart.afterdiscount}  ",
+                            " ${addtocart.afterdiscount} \$ ",
                             style: Theme.of(context).textTheme.headline6,
                           ),
                           Text("${addtocart.discount} %"),
-                          Text("${addtocart.totalprice}  "),
+                          Text("${addtocart.totalprice} \$ "),
                         ],
                       ),
                     ],

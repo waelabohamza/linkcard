@@ -146,7 +146,7 @@ class _ItemsState extends State<Items> {
                       Spacer(),
                       Container(
                           child: Text(
-                        "${widget.items['items_price']} \$",
+                        "${gePriceItemsByCountry(widget.items)[0]} ${gePriceItemsByCountry(widget.items)[1]}",
                         style: Theme.of(context).textTheme.headline6,
                       ))
                     ],
