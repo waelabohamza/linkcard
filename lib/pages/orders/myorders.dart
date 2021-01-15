@@ -64,16 +64,13 @@ class _MyOrdersState extends State<MyOrders> {
   }
 }
 
-
 class ListOrders extends StatelessWidget {
-
   final catname ; 
   final subcat ; 
   final username ; 
   final code ; 
   final items ; 
   const ListOrders({Key key , this.catname , this.code , this.items , this.subcat , this.username}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return  Container(
@@ -97,7 +94,6 @@ class ListOrders extends StatelessWidget {
                       child: Row(
                           // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            
                             Text("القسم الفرعي : ", style: TextStyle(fontWeight: FontWeight.bold , color: maincolor)),
                             Text(subcat)
                           ]),
