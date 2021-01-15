@@ -91,6 +91,7 @@ class _BasketState extends State<Basket> {
                   textColor: Colors.white,
                   onPressed: () {
                     if (addtocart.count > 0) {
+                      if (userid == null) return showAlertOneChoose(context , "warning" , "هام" , "يرجى يرجى تسجيل الدخول");
                       Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) {
                         return PaypalPayment(
@@ -217,7 +218,6 @@ class _BasketState extends State<Basket> {
                                                     items,
                                                     gePriceItemsByCountry(
                                                         items)[2]);
-
                                               }
                                             },
                                             child: Padding(
