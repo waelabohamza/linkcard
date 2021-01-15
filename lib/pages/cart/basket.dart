@@ -217,6 +217,7 @@ class _BasketState extends State<Basket> {
                                                     items,
                                                     gePriceItemsByCountry(
                                                         items)[2]);
+
                                               }
                                             },
                                             child: Padding(
