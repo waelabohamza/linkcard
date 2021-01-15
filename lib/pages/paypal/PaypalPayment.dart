@@ -1,8 +1,12 @@
 import 'dart:core';
 import 'package:flutter/material.dart';
+import 'package:linkcard/component/appbar.dart';
 import 'package:linkcard/component/crud.dart';
 import 'package:linkcard/main.dart';
+import 'package:linkcard/pages/cart/addtocart.dart';
+import 'package:linkcard/pages/paypal/faild.dart';
 import 'package:linkcard/pages/paypal/success.dart';
+import 'package:provider/provider.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'PaypalServices.dart';
 
@@ -126,19 +130,16 @@ class PaypalPaymentState extends State<PaypalPayment> {
     return temp;
   }
 
+  GlobalKey<ScaffoldState> appbarkey = new GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
+    var cart = Provider.of<AddToCart>(context, listen: false);
     print(checkoutUrl);
 
     if (checkoutUrl != null) {
       return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).backgroundColor,
-          leading: GestureDetector(
-            child: Icon(Icons.arrow_back_ios),
-            onTap: () => Navigator.pop(context),
-          ),
-        ),
+        appBar: myAppBar(appbarkey, "checkputpaypal", context),
         body: WebView(
           initialUrl: checkoutUrl,
           javascriptMode: JavascriptMode.unrestricted,
@@ -170,12 +171,16 @@ class PaypalPaymentState extends State<PaypalPayment> {
                 Navigator.of(context).pop();
               }
               if (returnSuccess == "approved") {
+                // اذا تمت عمليت الدفع بنجاح
+                cart.removeAll();
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (context) {
                   return Success(approve: returnSuccess);
                 }));
               } else {
-                
+                Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                  return Faild() ; 
+                })); 
               }
             }
             if (request.url.contains(cancelURL)) {
