@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:linkcard/pages/auth/login.dart';
 
 import 'package:linkcard/pages/cart/addtocart.dart';
+import 'package:linkcard/pages/country.dart';
 import 'package:linkcard/pages/home/home.dart';
 import 'package:linkcard/pages/paypal/success.dart';
 import 'package:linkcard/pages/routes.dart';
@@ -11,12 +12,16 @@ import 'package:linkcard/component/applocal.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 SharedPreferences sharedPrefs;
+
 String userid;
+
+String country;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   sharedPrefs = await SharedPreferences.getInstance();
   userid = sharedPrefs.getString("id");
+  country = sharedPrefs.getString("country");
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (BuildContext context) {
@@ -43,7 +48,8 @@ class MyApp extends StatelessWidget {
         primaryColor: Color(0xFF12234b),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: userid == null ? Login() : Home(),
+      home: country == null ? Country() : Login(),
+      //  userid == null ? Login() : Home(),
       // ,
       routes: routes,
       localizationsDelegates: [

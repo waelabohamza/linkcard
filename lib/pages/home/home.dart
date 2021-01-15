@@ -42,17 +42,22 @@ class _HomeState extends State<Home> {
                     Container(
                         margin: EdgeInsets.symmetric(vertical: 10),
                         child: buildCarousal()),
-                    Row(
-                      children: [
-                        Expanded(
-                            child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.asset(
-                            "assets/sale.gif",
-                            width: mdw / 1.06,
-                          ),
-                        ))
-                      ],
+                    InkWell(
+                      onTap: (){
+                        Navigator.of(context).pushNamed("offers") ; 
+                      },
+                      child: Row(
+                        children: [
+                          Expanded(
+                              child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.asset(
+                              "assets/sale.gif",
+                              width: mdw / 1.06,
+                            ),
+                          ))
+                        ],
+                      ),
                     ),
                     Container(
                       child: FutureBuilder(

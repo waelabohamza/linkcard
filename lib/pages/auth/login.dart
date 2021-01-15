@@ -5,6 +5,7 @@ import 'package:linkcard/component/valid.dart';
 import 'package:linkcard/const.dart';
 import 'package:linkcard/linkapi.dart';
 import 'package:linkcard/main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // import 'package:google_sign_in/google_sign_in.dart';
 
@@ -14,7 +15,7 @@ class Login extends StatefulWidget {
   _LoginState createState() => _LoginState();
 }
 
-class _LoginState extends State<Login>{
+class _LoginState extends State<Login> {
   TextEditingController email = new TextEditingController();
   TextEditingController password = new TextEditingController();
   TextEditingController forgetpassword = new TextEditingController();
@@ -55,10 +56,26 @@ class _LoginState extends State<Login>{
         Navigator.of(context).pushReplacementNamed("home");
       } else {
         Navigator.of(context).pop();
+
         showAlertOneChoose(context, "error", "خطأ",
             "كلمة المرور او البريد الالكتروني غير صحيح");
       }
     }
+  }
+
+  checkLogin() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var checkuser = prefs.getString("id");
+    if (checkuser == null) {
+    } else {
+      Navigator.of(context).pushReplacementNamed("home");
+    }
+  }
+
+  @override
+  void initState() {
+    checkLogin();
+    super.initState();
   }
 
   @override
@@ -155,7 +172,7 @@ class _LoginState extends State<Login>{
     return Container(
         padding: EdgeInsets.all(10),
         child: TextFormField(
-          obscureText: type == "password" ? true : false ,
+          obscureText: type == "password" ? true : false,
           controller: mycontrole,
           validator: (val) {
             if (type == "username") {

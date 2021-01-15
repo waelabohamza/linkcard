@@ -90,6 +90,12 @@ class MyDrawer extends StatelessWidget {
                       color: Colors.grey,
                     ),
                     buildCustomListile("حول التطبيق", Icons.info_sharp, () {}),
+                       Divider(
+                      color: Colors.grey,
+                    ),
+                    buildCustomListile("تغيير البلد", Icons.flag, () {
+                      Navigator.of(context).pushNamed("country") ; 
+                    }),
                     Divider(
                       color: Colors.grey,
                     ),
