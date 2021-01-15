@@ -58,7 +58,9 @@ class _ItemsState extends State<Items> {
           height: 60,
           child: Row(
             children: [
-              Consumer<AddToCart>(builder: (context, addtocart, child) {
+             sharedPrefs.getString("country") == "ir" ?      
+             SizedBox()
+             :Consumer<AddToCart>(builder: (context, addtocart, child) {
                 return Expanded(
                   child: RaisedButton.icon(
                       color: maincolor,

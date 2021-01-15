@@ -1,6 +1,7 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:linkcard/const.dart';
+import 'package:linkcard/main.dart';
 import 'package:linkcard/pages/cart/addtocart.dart';
 import 'package:provider/provider.dart';
 
@@ -19,24 +20,29 @@ Widget myAppBar(key, currentpage, context) {
                   height: 50,
                 ),
               )
-            : Consumer<AddToCart>(builder: (context, addtocart, child) {
-                return Badge(
-                  position: BadgePosition.topEnd(end: 30, top: 1),
-                  badgeContent: Text(
-                    '${addtocart.count}',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  child: IconButton(
-                      icon: Icon(
-                        Icons.add_shopping_cart,
-                        color: maincolor,
-                        size: 30,
+            : SizedBox(),
+        currentpage != "home"
+            ? sharedPrefs.getString("country") == "ir"
+                ? SizedBox()
+                : Consumer<AddToCart>(builder: (context, addtocart, child) {
+                    return Badge(
+                      position: BadgePosition.topEnd(end: 30, top: 1),
+                      badgeContent: Text(
+                        '${addtocart.count}',
+                        style: TextStyle(color: Colors.white),
                       ),
-                      onPressed: () {
-                        Navigator.of(context).pushNamed("basket");
-                      }),
-                );
-              }),
+                      child: IconButton(
+                          icon: Icon(
+                            Icons.add_shopping_cart,
+                            color: maincolor,
+                            size: 30,
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pushNamed("basket");
+                          }),
+                    );
+                  })
+            : SizedBox(),
         currentpage == "home"
             ? SizedBox()
             : IconButton(
@@ -45,7 +51,7 @@ Widget myAppBar(key, currentpage, context) {
                   color: maincolor,
                 ),
                 onPressed: () {
-                  Navigator.of(context).pop() ; 
+                  Navigator.of(context).pop();
                 },
               ),
       ],

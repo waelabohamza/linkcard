@@ -64,11 +64,11 @@ class _BasketState extends State<Basket> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            " ${addtocart.afterdiscount} \$ ",
+                            " ${addtocart.afterdiscount.toStringAsFixed(2)} \$ ",
                             style: Theme.of(context).textTheme.headline6,
                           ),
-                          Text("${addtocart.discount} %"),
-                          Text("${addtocart.totalprice} \$ "),
+                          Text("${addtocart.discount.toStringAsFixed(2)} %"),
+                          Text("${addtocart.totalprice.toStringAsFixed(2)} \$ "),
                         ],
                       ),
                     ],
@@ -91,7 +91,7 @@ class _BasketState extends State<Basket> {
                   textColor: Colors.white,
                   onPressed: () {
                     if (addtocart.count > 0) {
-                      if (userid == null) return showAlertOneChoose(context , "warning" , "هام" , "يرجى يرجى تسجيل الدخول");
+                      if (sharedPrefs.getString("id") == null) return showAlertOneChoose(context , "warning" , "هام" , "يرجى يرجى تسجيل الدخول");
                       Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) {
                         return PaypalPayment(

@@ -175,8 +175,9 @@ class PaypalPaymentState extends State<PaypalPayment> {
               if (returnSuccess == "approved") {
                 // اذا تمت عمليت الدفع بنجاح
                 cart.removeAll();
+                
                 Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) {
+                    .push(MaterialPageRoute(builder: (context){
                   return Success(approve: returnSuccess);
                 }));
               } else {
