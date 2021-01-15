@@ -75,7 +75,7 @@ class _SignUpState extends State<SignUp> {
                   buildTextFaild("اعد كتابة كلمة المرور", Icons.lock,
                       confirmpassword, "confirm"),
                   buildButtonLogin(mdw, Colors.orange, "انشاء الحساب", signUp),
-                  buildButtonLogin(mdw, Colors.grey, "صفحة تسجيل الدخول ", () {
+                  buildButtonLogin(mdw, Colors.green, "صفحة تسجيل الدخول ", () {
                     Navigator.of(context).pushNamed("login");
                   }),
                   buildButtonLogin(mdw, maincolor, "الدخول من دون تسجيل", () {
