@@ -53,11 +53,11 @@ class _BasketState extends State<Basket> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "الاجمالي النهائي",
+                            "الاجمالي النهائي بالدولار",
                             style: Theme.of(context).textTheme.headline6,
                           ),
                           Text("قيمة الخصم"),
-                          Text(" الاجمالي  "),
+                          Text(" الاجمالي بالدولار  "),
                         ],
                       ),
                       Column(

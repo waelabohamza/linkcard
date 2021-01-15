@@ -76,7 +76,8 @@ class _ItemsState extends State<Items> {
                           showAlertOneChoose(context, "warning", "هام",
                               "لا يوجد اكود متوفرة للبيع");
                         } else {
-                          addtocart.addItems(widget.items ,  gePriceItemsByCountry(widget.items)[0]);
+                          addtocart.addItems(widget.items,
+                              gePriceItemsByCountry(widget.items)[0]);
                         }
                       },
                       icon: Icon(Icons.shopping_basket),
@@ -199,7 +200,8 @@ class _ItemsState extends State<Items> {
                                   showAlertOneChoose(context, "warning", "هام",
                                       "لا يوجد اكود متوفرة للبيع");
                                 } else {
-                                  addtocart.addItems(widget.items ,  gePriceItemsByCountry(widget.items)[0]);
+                                  addtocart.addItems(widget.items,
+                                      gePriceItemsByCountry(widget.items)[2]);
                                 }
                               },
                             )),
@@ -225,7 +227,8 @@ class _ItemsState extends State<Items> {
                                 color: Colors.white,
                               ),
                               onPressed: () {
-                                addtocart.removeItems(widget.items , gePriceItemsByCountry(widget.items)[0]);
+                                addtocart.removeItems(widget.items,
+                                    gePriceItemsByCountry(widget.items)[2]);
                               },
                             ))
                       ],
@@ -256,30 +259,36 @@ class _ItemsState extends State<Items> {
 
   List gePriceItemsByCountry(items) {
     double price;
+    double priceus;
+    priceus = double.parse(items['items_price'].toString());
     List data = [];
     country = sharedPrefs.getString("country");
     if (country == "usa") {
       price = double.parse(items['items_price'].toString());
       data.add(price);
       data.add("\$");
+      data.add(priceus);
       return data;
     }
     if (country == "uae") {
       price = double.parse(items['items_price_em'].toString());
       data.add(price);
       data.add("د.ام");
+      data.add(priceus);
       return data;
     }
     if (country == "ir") {
       price = double.parse(items['items_price_ir'].toString());
       data.add(price);
       data.add("د.ع");
+      data.add(priceus);
       return data;
     }
     if (country == "sa") {
       price = double.parse(items['items_price_sa'].toString());
       data.add(price);
       data.add("ر.س");
+      data.add(priceus);
       return data;
     }
     return data;

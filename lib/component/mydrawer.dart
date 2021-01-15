@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:linkcard/const.dart';
 import 'package:linkcard/main.dart';
+import 'package:linkcard/pages/cart/addtocart.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -15,10 +17,12 @@ class MyDrawer extends StatelessWidget {
         color: Colors.grey[50],
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Colors.white,
-            boxShadow: [BoxShadow(color: Colors.grey[300], blurRadius: 2.0  , spreadRadius: 1.1)]
-          ),
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.grey[300], blurRadius: 2.0, spreadRadius: 1.1)
+              ]),
           child: Column(
             children: [
               Container(
@@ -89,13 +93,17 @@ class MyDrawer extends StatelessWidget {
                     Divider(
                       color: Colors.grey,
                     ),
-                    buildCustomListile("حول التطبيق", Icons.info_sharp, () {}),
-                       Divider(
+                    buildCustomListile("تغيير البلد", Icons.flag, () {
+                      var addtocart =
+                          Provider.of<AddToCart>(context, listen: false);
+                      addtocart.removeAll();
+                      Navigator.of(context).pushNamed("country");
+                    }),
+                    Divider(
                       color: Colors.grey,
                     ),
-                    buildCustomListile("تغيير البلد", Icons.flag, () {
-                      Navigator.of(context).pushNamed("country") ; 
-                    }),
+                    buildCustomListile("حول التطبيق", Icons.info_sharp, () {}),
+
                     Divider(
                       color: Colors.grey,
                     ),
@@ -138,7 +146,7 @@ class MyDrawer extends StatelessWidget {
                   }
                 },
                 child: Container(
-                  margin: EdgeInsets.only(bottom: 2 , left: 15 , right: 15),
+                  margin: EdgeInsets.only(bottom: 2, left: 15, right: 15),
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                   decoration: BoxDecoration(
                       color: Colors.green,
