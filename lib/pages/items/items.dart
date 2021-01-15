@@ -6,6 +6,7 @@ import 'package:linkcard/component/crud.dart';
 import 'package:linkcard/component/mydrawer.dart';
 import 'package:linkcard/const.dart';
 import 'package:linkcard/linkapi.dart';
+import 'package:linkcard/main.dart';
 import 'package:linkcard/pages/cart/addtocart.dart';
 import 'package:linkcard/pages/items/slider.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -24,7 +25,7 @@ class _ItemsState extends State<Items> {
 
   Crud crud = new Crud();
 
-  String  textwhatsapp  ; 
+  String textwhatsapp;
 
   int countcode = 0;
   bool loading = true;
@@ -41,7 +42,8 @@ class _ItemsState extends State<Items> {
   @override
   void initState() {
     geCountCodes();
-    textwhatsapp =  " السلام عليكم اريد التواصل لشراء حساب  " +  widget.items['items_name'] ; 
+    textwhatsapp =
+        " السلام عليكم اريد التواصل لشراء حساب  " + widget.items['items_name'];
     super.initState();
   }
 
@@ -74,7 +76,7 @@ class _ItemsState extends State<Items> {
                           showAlertOneChoose(context, "warning", "هام",
                               "لا يوجد اكود متوفرة للبيع");
                         } else {
-                          addtocart.addItems(widget.items);
+                          addtocart.addItems(widget.items ,  gePriceItemsByCountry(widget.items)[0]);
                         }
                       },
                       icon: Icon(Icons.shopping_basket),
@@ -92,7 +94,8 @@ class _ItemsState extends State<Items> {
                     color: Colors.green,
                     textColor: Colors.white,
                     onPressed: () async {
-                      String url = 'https://api.whatsapp.com/send/?phone=96569001503&text=${textwhatsapp}&app_absent=0';
+                      String url =
+                          'https://api.whatsapp.com/send/?phone=96569001503&text=${textwhatsapp}&app_absent=0';
                       if (await canLaunch(url)) {
                         await launch(url);
                       } else {
@@ -196,7 +199,7 @@ class _ItemsState extends State<Items> {
                                   showAlertOneChoose(context, "warning", "هام",
                                       "لا يوجد اكود متوفرة للبيع");
                                 } else {
-                                  addtocart.addItems(widget.items);
+                                  addtocart.addItems(widget.items ,  gePriceItemsByCountry(widget.items)[0]);
                                 }
                               },
                             )),
@@ -222,7 +225,7 @@ class _ItemsState extends State<Items> {
                                 color: Colors.white,
                               ),
                               onPressed: () {
-                                addtocart.removeItems(widget.items);
+                                addtocart.removeItems(widget.items , gePriceItemsByCountry(widget.items)[0]);
                               },
                             ))
                       ],
@@ -249,5 +252,36 @@ class _ItemsState extends State<Items> {
                 )
               ])),
     );
+  }
+
+  List gePriceItemsByCountry(items) {
+    double price;
+    List data = [];
+    country = sharedPrefs.getString("country");
+    if (country == "usa") {
+      price = double.parse(items['items_price'].toString());
+      data.add(price);
+      data.add("\$");
+      return data;
+    }
+    if (country == "uae") {
+      price = double.parse(items['items_price_em'].toString());
+      data.add(price);
+      data.add("د.ام");
+      return data;
+    }
+    if (country == "ir") {
+      price = double.parse(items['items_price_ir'].toString());
+      data.add(price);
+      data.add("د.ع");
+      return data;
+    }
+    if (country == "sa") {
+      price = double.parse(items['items_price_sa'].toString());
+      data.add(price);
+      data.add("ر.س");
+      return data;
+    }
+    return data;
   }
 }

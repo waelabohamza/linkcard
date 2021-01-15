@@ -6,6 +6,7 @@ import 'package:linkcard/component/crud.dart';
 import 'package:linkcard/component/mydrawer.dart';
 import 'package:linkcard/const.dart';
 import 'package:linkcard/linkapi.dart';
+import 'package:linkcard/main.dart';
 import 'package:linkcard/pages/cart/addtocart.dart';
 // import 'package:linkcard/pages/payment/checkout.dart';
 import 'package:linkcard/pages/paypal/PaypalPayment.dart';
@@ -63,11 +64,11 @@ class _BasketState extends State<Basket> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            " ${addtocart.afterdiscount} د.ام",
+                            " ${addtocart.afterdiscount}  ",
                             style: Theme.of(context).textTheme.headline6,
                           ),
                           Text("${addtocart.discount} %"),
-                          Text("${addtocart.totalprice} د.ام"),
+                          Text("${addtocart.totalprice}  "),
                         ],
                       ),
                     ],
@@ -97,8 +98,8 @@ class _BasketState extends State<Basket> {
                           listitems: addtocart.bascket,
                           totalprice: addtocart.afterdiscount,
                           quantity: addtocart.quantity,
-                          onFinish: (id){
-                              print("id : $id") ; 
+                          onFinish: (id) {
+                            print("id : $id");
                           },
                         );
                       }));
@@ -212,7 +213,10 @@ class _BasketState extends State<Basket> {
                                                     "هام",
                                                     "لا يوجد اكود متوفرة للبيع");
                                               } else {
-                                                addtocart.addItems(items);
+                                                addtocart.addItems(
+                                                    items,
+                                                    gePriceItemsByCountry(
+                                                        items)[0]);
                                               }
                                             },
                                             child: Padding(
@@ -244,7 +248,10 @@ class _BasketState extends State<Basket> {
                                                   Radius.circular(10))),
                                           child: InkWell(
                                             onTap: () {
-                                              addtocart.removeItems(items);
+                                              addtocart.removeItems(
+                                                  items,
+                                                  gePriceItemsByCountry(
+                                                      items)[0]);
                                             },
                                             child: Padding(
                                               padding: EdgeInsets.all(8),
@@ -269,18 +276,19 @@ class _BasketState extends State<Basket> {
                   children: [
                     Container(child: Text("price")),
                     int.parse(items['items_discount']) == 0
-                        ? Text("${items['items_price']} \$")
+                        ? Text(
+                            "${gePriceItemsByCountry(items)[0]} ${gePriceItemsByCountry(items)[1]}")
                         : Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                "${items['items_price']} \$",
+                                "${gePriceItemsByCountry(items)[0]} ${gePriceItemsByCountry(items)[1]}",
                                 style: TextStyle(
                                     decoration: TextDecoration.lineThrough,
                                     color: Colors.red),
                               ),
                               Text(
-                                "${int.parse(items['items_price']) - int.parse(items['items_price']) * (int.parse(items['items_discount']) / 100)}  \$",
+                                "${gePriceItemsByCountry(items)[0] - gePriceItemsByCountry(items)[0] * (int.parse(items['items_discount']) / 100)}  ${gePriceItemsByCountry(items)[1]}",
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.green),
@@ -347,5 +355,36 @@ class _BasketState extends State<Basket> {
         ),
       );
     });
+  }
+
+  List gePriceItemsByCountry(items) {
+    double price;
+    List data = [];
+    country = sharedPrefs.getString("country");
+    if (country == "usa") {
+      price = double.parse(items['items_price'].toString());
+      data.add(price);
+      data.add("\$");
+      return data;
+    }
+    if (country == "uae") {
+      price = double.parse(items['items_price_em'].toString());
+      data.add(price);
+      data.add("د.ام");
+      return data;
+    }
+    if (country == "ir") {
+      price = double.parse(items['items_price_ir'].toString());
+      data.add(price);
+      data.add("د.ع");
+      return data;
+    }
+    if (country == "sa") {
+      price = double.parse(items['items_price_sa'].toString());
+      data.add(price);
+      data.add("ر.س");
+      return data;
+    }
+    return data;
   }
 }

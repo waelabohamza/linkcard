@@ -17,7 +17,7 @@ class AddToCart with ChangeNotifier {
     notifyListeners();
   }
 
-  addItems(items) {
+  addItems(items, itemsprice) {
     print(items);
     count++;
     if (quantity[items['items_id']] == null ||
@@ -26,21 +26,19 @@ class AddToCart with ChangeNotifier {
       quantity[items['items_id']] = 1;
       // price += double.parse(items['items_price']);
       // For Coupon ====================================
-      price += double.parse(items['items_price']) -
-          double.parse(items['items_price']) *
-              (double.parse(items['items_discount']) / 100);
+      price += itemsprice -
+          itemsprice * (double.parse(items['items_discount']) / 100);
       // For Coupon ====================================
     } else {
       quantity[items['items_id']] = quantity[items['items_id']] + 1;
       // price += double.parse(items['items_price']);
-      price += double.parse(items['items_price']) -
-          double.parse(items['items_price']) *
-              (double.parse(items['items_discount']) / 100);
+      price += itemsprice -
+          itemsprice * (double.parse(items['items_discount']) / 100);
     }
     notifyListeners();
   }
 
-  removeItems(items) {
+  removeItems(items, itemsprice) {
     if (quantity[items['items_id']] != null) {
       if (quantity[items['items_id']] == 1) {
         listitems
@@ -48,9 +46,8 @@ class AddToCart with ChangeNotifier {
       }
       if (quantity[items['items_id']] > 0) {
         count--;
-        price -= double.parse(items['items_price']) -
-            double.parse(items['items_price']) *
-                (double.parse(items['items_discount']) / 100);
+        price -= itemsprice -
+            itemsprice * (double.parse(items['items_discount']) / 100);
         quantity[items['items_id']] = quantity[items['items_id']] - 1;
       }
     }

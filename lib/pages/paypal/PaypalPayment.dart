@@ -15,7 +15,7 @@ class PaypalPayment extends StatefulWidget {
   final Function onFinish;
 
   // For Orders
-
+  final typecurrecy ; 
   final count;
   final listitems;
   final quantity;
@@ -25,7 +25,9 @@ class PaypalPayment extends StatefulWidget {
       this.totalprice,
       this.count,
       this.listitems,
-      this.quantity});
+      this.quantity , 
+      this.typecurrecy
+      });
 
   @override
   State<StatefulWidget> createState() {

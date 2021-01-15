@@ -4,9 +4,11 @@ import 'package:linkcard/component/appbar.dart';
 import 'package:linkcard/component/crud.dart';
 import 'package:linkcard/component/mydrawer.dart';
 import 'package:linkcard/linkapi.dart';
+import 'package:linkcard/main.dart';
+
 import 'package:linkcard/pages/items/items.dart';
 
-class SubCategories extends StatefulWidget{
+class SubCategories extends StatefulWidget {
   final subcat;
   SubCategories({Key key, this.subcat}) : super(key: key);
   @override
@@ -44,6 +46,38 @@ class _SubCategoriesState extends State<SubCategories> {
       ),
     );
   }
+
+  List gePriceItemsByCountry(items) {
+    double price;
+    List data = [];
+    country = sharedPrefs.getString("country") ; 
+    if (country == "usa") {
+      price = double.parse(items['items_price'].toString());
+      data.add(price);
+      data.add("\$");
+      return data;
+    }
+    if (country == "uae") {
+      price = double.parse(items['items_price_em'].toString());
+      data.add(price);
+      data.add("د.ام");
+      return data;
+    }
+    if (country == "ir") {
+      price = double.parse(items['items_price_ir'].toString());
+      data.add(price);
+      data.add("د.ع");
+      return data;
+    }
+    if (country == "sa") {
+      price = double.parse(items['items_price_sa'].toString());
+      data.add(price);
+      data.add("ر.س");
+      return data;
+    }
+    return data;
+  }
+
   buildItemsList(items, function()) {
     return InkWell(
       onTap: () {
@@ -82,23 +116,21 @@ class _SubCategoriesState extends State<SubCategories> {
                     child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                        
-                        child: Text("السعر")),
+                    Container(child: Text("السعر")),
                     int.parse(items['items_discount']) == 0
-                        ? Text("${items['items_price']} \$")
+                        ? Text(
+                            "{${gePriceItemsByCountry(items)[0]} ${gePriceItemsByCountry(items)[1]}  ")
                         : Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                "${items['items_price']} \$",
+                                "${gePriceItemsByCountry(items)[0]} ${gePriceItemsByCountry(items)[1]}  ",
                                 style: TextStyle(
                                     decoration: TextDecoration.lineThrough,
                                     color: Colors.red),
                               ),
-                            
                               Text(
-                                "${int.parse(items['items_price']) - int.parse(items['items_price']) * (int.parse(items['items_discount']) / 100)} \$ ",
+                                "${gePriceItemsByCountry(items)[0] - gePriceItemsByCountry(items)[0] * (int.parse(items['items_discount']) / 100)} ${gePriceItemsByCountry(items)[1]} ",
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.green),
