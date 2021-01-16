@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:linkcard/main.dart';
+import 'package:linkcard/pages/subcategories/subcategories.dart';
 
 class Country extends StatefulWidget {
   Country({Key key}) : super(key: key);
@@ -9,6 +10,13 @@ class Country extends StatefulWidget {
 }
 
 class _CountryState extends State<Country> {
+    
+
+  SubCategories isss = new SubCategories() ; 
+  
+  
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

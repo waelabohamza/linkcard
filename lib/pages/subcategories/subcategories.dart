@@ -16,8 +16,15 @@ class SubCategories extends StatefulWidget {
 }
 
 class _SubCategoriesState extends State<SubCategories> {
+   
+ 
   Crud crud = new Crud();
   GlobalKey<ScaffoldState> scaffoldkey = new GlobalKey<ScaffoldState>();
+  
+  buildCat(){
+         
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -119,7 +126,7 @@ class _SubCategoriesState extends State<SubCategories> {
                     Container(child: Text("السعر")),
                     int.parse(items['items_discount']) == 0
                         ? Text(
-                            "{${gePriceItemsByCountry(items)[0]} ${gePriceItemsByCountry(items)[1]}  ")
+                            "${gePriceItemsByCountry(items)[0]} ${gePriceItemsByCountry(items)[1]}  ")
                         : Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
