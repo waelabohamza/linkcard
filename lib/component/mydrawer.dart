@@ -143,7 +143,7 @@ class MyDrawer extends StatelessWidget {
                 onTap: () async {
                   String text = "اهلا بكم انا زبون من تطبيق المتجر العربي";
                   String url =
-                      'https://api.whatsapp.com/send/?phone=96569001503&text=$text&app_absent=0';
+                      'https://api.whatsapp.com/send/?phone=$phonewhatsapp&text=$text&app_absent=0';
                   if (await canLaunch(url)) {
                     await launch(url);
                   } else {

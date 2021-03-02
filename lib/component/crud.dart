@@ -1,6 +1,7 @@
 import 'package:linkcard/const.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:linkcard/linkapi.dart';
 // import 'package:path/path.dart';
 // import 'dart:io';
 
@@ -65,7 +66,7 @@ class Crud {
   }
 
   addOrders(var data) async {
-    var url = "https://$serverName/orders/checkout.php";
+    var url = linkaddorider;
     var response =
         await http.post(url, body: json.encode(data), headers: myheaders);
     if (response.statusCode == 200) {

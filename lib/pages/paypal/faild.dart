@@ -31,7 +31,7 @@ class _FaildState extends State<Faild> {
                 String text =
                     "السلام انا زبون واريد التواصل مع الدعم الفني من اجل مشكلة في الطلب";
                 String url =
-                    'https://api.whatsapp.com/send/?phone=96569001503&text=$text&app_absent=0';
+                    'https://api.whatsapp.com/send/?phone=$phonewhatsapp&text=$text&app_absent=0';
                 if (await canLaunch(url)) {
                   await launch(url);
                 } else {
