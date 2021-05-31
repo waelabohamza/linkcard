@@ -9,8 +9,9 @@ import 'package:linkcard/main.dart';
 import 'package:linkcard/pages/items/items.dart';
 
 class SubCategories extends StatefulWidget {
+  final image ; 
   final subcat;
-  SubCategories({Key key, this.subcat}) : super(key: key);
+  SubCategories({Key key, this.subcat , this.image}) : super(key: key);
   @override
   _SubCategoriesState createState() => _SubCategoriesState();
 }
