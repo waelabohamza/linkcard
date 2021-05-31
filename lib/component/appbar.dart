@@ -9,7 +9,7 @@ Widget myAppBar(key, currentpage, context) {
   return AppBar(
       brightness: Brightness.light,
       toolbarHeight: 80.0,
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey[900],
       actions: [
         currentpage == "home"
             ? Container(

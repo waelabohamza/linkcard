@@ -21,10 +21,10 @@ buildCategories(categories, int index, context) {
               : index == 1
                   ? Colors.green
                   : maincolor,
-          borderRadius: BorderRadius.circular(15)),
+          borderRadius: BorderRadius.circular(20)),
       margin: EdgeInsets.only(left: index.isEven ? 10 : 0  , top: 10 ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(20),
         child: CachedNetworkImage(
           imageUrl: "$linkupload/categories/${categories['categories_image']}",
           progressIndicatorBuilder: (context, url, downloadProgress) =>

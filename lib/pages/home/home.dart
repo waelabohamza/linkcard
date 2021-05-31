@@ -36,7 +36,8 @@ class _HomeState extends State<Home> {
         drawer: MyDrawer(),
         body: WillPopScope(
             child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                color: Colors.grey[900],
+                // padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 child: ListView(
                   children: [
                     Container(
@@ -44,7 +45,7 @@ class _HomeState extends State<Home> {
                         child: buildCarousal(context)),
                     // InkWell(
                     //   onTap: (){
-                    //     Navigator.of(context).pushNamed("offers") ; 
+                    //     Navigator.of(context).pushNamed("offers") ;
                     //   },
                     //   child: Row(
                     //     children: [
@@ -60,6 +61,13 @@ class _HomeState extends State<Home> {
                     //   ),
                     // ),
                     Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.vertical(top: Radius.circular(40))
+
+                      ),
                       child: FutureBuilder(
                         future: crud.readData(linkcategories),
                         builder:
