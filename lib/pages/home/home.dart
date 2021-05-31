@@ -1,8 +1,4 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:linkcard/component/alert.dart';
-import 'package:linkcard/component/appbar.dart';
 import 'package:linkcard/component/crud.dart';
 import 'package:linkcard/component/exitapp.dart';
 import 'package:linkcard/component/mydrawer.dart';
@@ -20,7 +16,7 @@ class _HomeState extends State<Home> {
   List horzintalList = [
     {"image": "assets/sale.png" ,  "type" : "sale"},
     {"image": "assets/social2.png" , "type" : "social"},
-    {"image": "assets/sale.png"},
+    {"image": "assets/sale.png"  ,  "type" : "ss"},
   ];
 
   GlobalKey<ScaffoldState> appbarkey = new GlobalKey<ScaffoldState>();
@@ -42,23 +38,6 @@ class _HomeState extends State<Home> {
                     Container(
                         margin: EdgeInsets.symmetric(vertical: 10),
                         child: buildCarousal(context)),
-                    // InkWell(
-                    //   onTap: (){
-                    //     Navigator.of(context).pushNamed("offers") ;
-                    //   },
-                    //   child: Row(
-                    //     children: [
-                    //       Expanded(
-                    //           child: ClipRRect(
-                    //         borderRadius: BorderRadius.circular(10),
-                    //         child: Image.asset(
-                    //           "assets/sale.gif",
-                    //           width: mdw / 1.06,
-                    //         ),
-                    //       ))
-                    //     ],
-                    //   ),
-                    // ),
                     SizedBox(height: 20),
                     Container(
                         height: 150,
@@ -72,7 +51,11 @@ class _HomeState extends State<Home> {
                             itemCount: horzintalList.length,
                             itemBuilder: (context, i) {
                               return InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  horzintalList[i]['type'] == "sale" ?
+                                  Navigator.of(context).pushNamed("offers")  
+                                   : SizedBox();
+                                },
                                 child: Container(
                                   height: 130,
                                   color: Colors.black,
@@ -116,21 +99,6 @@ class _HomeState extends State<Home> {
                         },
                       ),
                     ),
-                    // Container(
-                    //   margin: EdgeInsets.only(top: 10),
-                    //   child: Row(
-                    //     children: [
-                    //       Expanded(
-                    //           child: ClipRRect(
-                    //         borderRadius: BorderRadius.circular(10),
-                    //         child: Image.asset(
-                    //           "assets/a.jpg",
-                    //           width: mdw / 1.06,
-                    //         ),
-                    //       ))
-                    //     ],
-                    //   ),
-                    // ),
                   ],
                 )),
             onWillPop: () {

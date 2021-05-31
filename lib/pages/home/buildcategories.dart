@@ -2,15 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:linkcard/linkapi.dart';
 import 'package:linkcard/pages/categories/categories.dart';
-
-import '../../const.dart';
-
 buildCategories(categories, int index, context) {
   return InkWell(
     onTap: () {
       Navigator.of(context).push(MaterialPageRoute(builder: (context) {
         return Categories(
           catid: categories['categories_id'],
+          imageurl : categories['categories_image']
         );
       }));
     },
