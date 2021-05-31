@@ -74,6 +74,7 @@ flutter:
     - assets/lang/
     - assets/country/
     - assets/
+    - assets/social2.png
     - assets/sale.gif
     - assets/a.jpg
     # - images/a_dot_ham.jpeg

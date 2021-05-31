@@ -17,14 +17,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
-   
-   List horzintalList = [
-         {
-            "image" : ""
-         }
-   ] ; 
-
+  List horzintalList = [
+    {"image": "assets/sale.png" ,  "type" : "sale"},
+    {"image": "assets/social2.png" , "type" : "social"},
+    {"image": "assets/sale.png"},
+  ];
 
   GlobalKey<ScaffoldState> appbarkey = new GlobalKey<ScaffoldState>();
   Crud crud = new Crud();
@@ -62,11 +59,35 @@ class _HomeState extends State<Home> {
                     //     ],
                     //   ),
                     // ),
-                    ListView.builder(
-                      itemCount: 3,
-                      itemBuilder: (context, i) {
-                      
-                    }),
+                    SizedBox(height: 20),
+                    Container(
+                        height: 150,
+                        padding: EdgeInsets.symmetric(horizontal: 5),
+                        child: ListView.separated(
+                            separatorBuilder: (context, i) {
+                              return SizedBox(width: 10);
+                            },
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: horzintalList.length,
+                            itemBuilder: (context, i) {
+                              return InkWell(
+                                onTap: () {},
+                                child: Container(
+                                  height: 130,
+                                  color: Colors.black,
+                                  alignment: Alignment.center,
+                                  padding: EdgeInsets.all(10),
+                                  child: Image.asset(
+                                    "${horzintalList[i]['image']}",
+                                    width: 120,
+                                    height: 120,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              );
+                            })),
+                    SizedBox(height: 20),
                     Container(
                       padding:
                           EdgeInsets.symmetric(horizontal: 10, vertical: 10),
