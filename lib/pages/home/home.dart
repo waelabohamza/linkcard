@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:linkcard/component/alert.dart';
 import 'package:linkcard/component/appbar.dart';
 import 'package:linkcard/component/crud.dart';
+import 'package:linkcard/component/exitapp.dart';
 import 'package:linkcard/component/mydrawer.dart';
 import 'package:linkcard/pages/home/buildcategories.dart';
 import 'package:linkcard/pages/home/slider.dart';
@@ -16,13 +17,14 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  Future<bool> onWillPop() {
-    return showAlert(context, "error", "تنبيه", "هل تريد اغلاق التطيبق", () {},
-            () {
-          exit(0);
-        }) ??
-        false;
-  }
+
+   
+   List horzintalList = [
+         {
+            "image" : ""
+         }
+   ] ; 
+
 
   GlobalKey<ScaffoldState> appbarkey = new GlobalKey<ScaffoldState>();
   Crud crud = new Crud();
@@ -32,7 +34,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
         drawerScrimColor: Colors.transparent,
         key: appbarkey,
-        appBar: myAppBar(appbarkey, "home", context),
+        // appBar: myAppBar(appbarkey, "home", context),
         drawer: MyDrawer(),
         body: WillPopScope(
             child: Container(
@@ -60,14 +62,18 @@ class _HomeState extends State<Home> {
                     //     ],
                     //   ),
                     // ),
+                    ListView.builder(
+                      itemCount: 3,
+                      itemBuilder: (context, i) {
+                      
+                    }),
                     Container(
                       padding:
                           EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                       decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.vertical(top: Radius.circular(40))
-
-                      ),
+                          color: Colors.black,
+                          borderRadius:
+                              BorderRadius.vertical(top: Radius.circular(40))),
                       child: FutureBuilder(
                         future: crud.readData(linkcategories),
                         builder:
@@ -106,6 +112,9 @@ class _HomeState extends State<Home> {
                     // ),
                   ],
                 )),
-            onWillPop: onWillPop));
+            onWillPop: () {
+              onWillPop(context);
+              return;
+            }));
   }
 }

@@ -16,11 +16,7 @@ buildCategories(categories, int index, context) {
     },
     child: Container(
       decoration: BoxDecoration(
-          color: index == 2
-              ? Colors.red
-              : index == 1
-                  ? Colors.green
-                  : maincolor,
+          color:  Colors.black,
           borderRadius: BorderRadius.circular(20)),
       margin: EdgeInsets.only(left: index.isEven ? 10 : 0  , top: 10 ),
       child: ClipRRect(
