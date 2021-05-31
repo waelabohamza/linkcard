@@ -7,7 +7,6 @@ const serverName = "10.0.2.2:8080/apicommercealarabi" ;
 
 const phonewhatsapp = "" ; 
  
-
 const Color maincolor = Color(0xFF3498db); 
 
 const imagelogo = "assets/logo.png" ; 

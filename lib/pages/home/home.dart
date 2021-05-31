@@ -42,23 +42,23 @@ class _HomeState extends State<Home> {
                     Container(
                         margin: EdgeInsets.symmetric(vertical: 10),
                         child: buildCarousal(context)),
-                    InkWell(
-                      onTap: (){
-                        Navigator.of(context).pushNamed("offers") ; 
-                      },
-                      child: Row(
-                        children: [
-                          Expanded(
-                              child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.asset(
-                              "assets/sale.gif",
-                              width: mdw / 1.06,
-                            ),
-                          ))
-                        ],
-                      ),
-                    ),
+                    // InkWell(
+                    //   onTap: (){
+                    //     Navigator.of(context).pushNamed("offers") ; 
+                    //   },
+                    //   child: Row(
+                    //     children: [
+                    //       Expanded(
+                    //           child: ClipRRect(
+                    //         borderRadius: BorderRadius.circular(10),
+                    //         child: Image.asset(
+                    //           "assets/sale.gif",
+                    //           width: mdw / 1.06,
+                    //         ),
+                    //       ))
+                    //     ],
+                    //   ),
+                    // ),
                     Container(
                       child: FutureBuilder(
                         future: crud.readData(linkcategories),
@@ -81,21 +81,21 @@ class _HomeState extends State<Home> {
                         },
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(top: 10),
-                      child: Row(
-                        children: [
-                          Expanded(
-                              child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.asset(
-                              "assets/a.jpg",
-                              width: mdw / 1.06,
-                            ),
-                          ))
-                        ],
-                      ),
-                    ),
+                    // Container(
+                    //   margin: EdgeInsets.only(top: 10),
+                    //   child: Row(
+                    //     children: [
+                    //       Expanded(
+                    //           child: ClipRRect(
+                    //         borderRadius: BorderRadius.circular(10),
+                    //         child: Image.asset(
+                    //           "assets/a.jpg",
+                    //           width: mdw / 1.06,
+                    //         ),
+                    //       ))
+                    //     ],
+                    //   ),
+                    // ),
                   ],
                 )),
             onWillPop: onWillPop));
