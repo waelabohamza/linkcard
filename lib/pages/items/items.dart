@@ -119,7 +119,7 @@ class _ItemsState extends State<Items> {
           : Container(
               padding: EdgeInsets.all(10),
               child: ListView(children: [
-                buildCarousalItems(widget.items['items_imagetwo']),
+                buildCarousalItems(context , widget.items['items_imagetwo']),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   margin: EdgeInsets.only(top: 10),

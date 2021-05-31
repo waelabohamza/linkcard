@@ -1,4 +1,3 @@
-import 'package:linkcard/const.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:linkcard/linkapi.dart';
@@ -17,7 +16,7 @@ Map<String, String> myheaders = {
 class Crud {
   readData(String url) async {
     try {
-      var response = await http.get(url, headers: myheaders);
+      var response = await http.get(Uri.parse(url) , headers: myheaders);
       if (response.statusCode == 200) {
         print(response.body);
         var responsebody = jsonDecode(response.body);
@@ -35,7 +34,7 @@ class Crud {
     var data;
     data = {"id": value.toString()};
     try {
-      var response = await http.post(url, body: data, headers: myheaders);
+      var response = await http.post(Uri.parse(url) , body: data, headers: myheaders);
       if (response.statusCode == 200) {
         print(response.body);
         var responsebody = jsonDecode(response.body);
@@ -51,7 +50,7 @@ class Crud {
 
   writeData(String url, var data) async {
     try {
-      var response = await http.post(url, body: data, headers: myheaders);
+      var response = await http.post(Uri.parse(url) , body: data, headers: myheaders);
       if (response.statusCode == 200) {
         print(response.body);
         var responsebody = jsonDecode(response.body);
@@ -68,7 +67,7 @@ class Crud {
   addOrders(var data) async {
     var url = linkaddorider;
     var response =
-        await http.post(url, body: json.encode(data), headers: myheaders);
+        await http.post(Uri.parse(url) ,  body: json.encode(data), headers: myheaders);
     if (response.statusCode == 200) {
       print(response.body);
       var responsebody = response.body;

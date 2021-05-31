@@ -4,24 +4,28 @@ import 'dart:convert' as convert;
 import 'package:http_auth/http_auth.dart';
 
 class PaypalServices {
-
   String domain = "https://api.sandbox.paypal.com"; // for sandbox mode
 //  String domain = "https://api.paypal.com"; // for production mode
 
   // change clientId and secret with your own, provided by paypal
-  String clientId = 'AZpEetlGAH3wy7YFtyDHjweVF5-Ah3L0nAC9KaZVAA8-YiTGvxkpsRwo1twk6iZS-wjCrkcBiqVnqdT0';
-  String secret = 'EEMS4J-c4AAUSroPFgvVU-4SjBNAvHrEdw7oT0XrhLPoKGG08CafM5B5A5lCYE2-N2Rm2fIU3a8D_Vtt';
+  String clientId =
+      'AZpEetlGAH3wy7YFtyDHjweVF5-Ah3L0nAC9KaZVAA8-YiTGvxkpsRwo1twk6iZS-wjCrkcBiqVnqdT0';
+  String secret =
+      'EEMS4J-c4AAUSroPFgvVU-4SjBNAvHrEdw7oT0XrhLPoKGG08CafM5B5A5lCYE2-N2Rm2fIU3a8D_Vtt';
 
   // for getting the access token from Paypal
   Future<String> getAccessToken() async {
     try {
       var client = BasicAuthClient(clientId, secret);
-      var response = await client.post('$domain/v1/oauth2/token?grant_type=client_credentials');
+      var response = await client.post(
+          Uri.parse('$domain/v1/oauth2/token?grant_type=client_credentials'));
       if (response.statusCode == 200) {
         final body = convert.jsonDecode(response.body);
-        print("=================================== Token =====================================") ; 
-        print( body["access_token"]) ; 
-        print("=================================== End Token =====================================") ; 
+        print(
+            "=================================== Token =====================================");
+        print(body["access_token"]);
+        print(
+            "=================================== End Token =====================================");
         return body["access_token"];
       }
       return null;
@@ -34,7 +38,7 @@ class PaypalServices {
   Future<Map<String, String>> createPaypalPayment(
       transactions, accessToken) async {
     try {
-      var response = await http.post("$domain/v1/payments/payment",
+      var response = await http.post(Uri.parse("$domain/v1/payments/payment"),
           body: convert.jsonEncode(transactions),
           headers: {
             "content-type": "application/json",
@@ -46,11 +50,11 @@ class PaypalServices {
         if (body["links"] != null && body["links"].length > 0) {
           List links = body["links"];
 
-        print("Link Body in CreatePaypalPayment 201 ==========================") ; 
-        print("$links") ; 
-        print("Link Body in CreatePaypalPayment End 201 ===========================") ; 
-     
-
+          print(
+              "Link Body in CreatePaypalPayment 201 ==========================");
+          print("$links");
+          print(
+              "Link Body in CreatePaypalPayment End 201 ===========================");
 
           String executeUrl = "";
           String approvalUrl = "";
@@ -68,15 +72,15 @@ class PaypalServices {
         }
         return null;
       } else {
-        print("Link Body in CreatePaypalPayment  != 201") ; 
-        print("$body") ; 
-        print("Link Body in CreatePaypalPayment End != 201") ; 
+        print("Link Body in CreatePaypalPayment  != 201");
+        print("$body");
+        print("Link Body in CreatePaypalPayment End != 201");
         throw Exception(body["message"]);
-        // print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa") ; 
+        // print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa") ;
       }
     } catch (e) {
       rethrow;
-        // print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa") ; 
+      // print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa") ;
 
     }
   }
@@ -93,15 +97,19 @@ class PaypalServices {
 
       final body = convert.jsonDecode(response.body);
       if (response.statusCode == 200) {
-        print("====================== executePayment Return Success =========================") ; 
-        print(body['state']) ; 
-        print("====================== executePayment Return End Success =================================") ; 
+        print(
+            "====================== executePayment Return Success =========================");
+        print(body['state']);
+        print(
+            "====================== executePayment Return End Success =================================");
         // return body["id"];
-        return body['state'] ; 
+        return body['state'];
       }
-        print("====================== executePayment Return faild =========================") ; 
-        print(body) ; 
-        print("====================== executePayment Return End faild =================================") ; 
+      print(
+          "====================== executePayment Return faild =========================");
+      print(body);
+      print(
+          "====================== executePayment Return End faild =================================");
       return null;
     } catch (e) {
       rethrow;

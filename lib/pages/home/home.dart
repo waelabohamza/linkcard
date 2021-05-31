@@ -41,7 +41,7 @@ class _HomeState extends State<Home> {
                   children: [
                     Container(
                         margin: EdgeInsets.symmetric(vertical: 10),
-                        child: buildCarousal()),
+                        child: buildCarousal(context)),
                     InkWell(
                       onTap: (){
                         Navigator.of(context).pushNamed("offers") ; 

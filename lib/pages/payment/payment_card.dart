@@ -27,7 +27,7 @@ class CheckoutPayment {
       'expiry_year': card.expiryYear , 
       "cvv" : card.cvv
     };
-    var response = await http.post(_tokenUrl,
+    var response = await http.post(Uri.parse(_tokenUrl),
         headers: _tokenHeader, body: jsonEncode(body));
 
     switch (response.statusCode) {
@@ -51,7 +51,7 @@ class CheckoutPayment {
       // "amount":  1000,
       "currency": "USD",
     };
-    var response = await http.post(_paymentUrl,
+    var response = await http.post(Uri.parse(_paymentUrl),
         headers: _paymentHeader, body: jsonEncode(body));
     switch (response.statusCode) {
       case 201:
